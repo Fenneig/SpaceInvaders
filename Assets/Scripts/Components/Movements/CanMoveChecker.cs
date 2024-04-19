@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace SpaceInvaders
+namespace SpaceInvaders.Components.Movements
 {
     public class CanMoveChecker
     {

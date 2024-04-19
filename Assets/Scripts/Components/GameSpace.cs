@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace SpaceInvaders
+namespace SpaceInvaders.Components
 {
     public class GameSpace : MonoBehaviour
     {

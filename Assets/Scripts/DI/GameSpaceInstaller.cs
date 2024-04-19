@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using SpaceInvaders.Components;
+using UnityEngine;
 using Zenject;
 
 namespace SpaceInvaders.DI

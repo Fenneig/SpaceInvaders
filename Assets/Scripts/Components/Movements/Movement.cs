@@ -4,7 +4,7 @@ namespace SpaceInvaders.Components.Movements
 {
     public class Movement
     {
-        private RectTransform _transform;
+        private RectTransform _transformToMove;
         private float _speed;
         private const float SPEED_MULTIPLIER = 100f;
         
@@ -18,19 +18,24 @@ namespace SpaceInvaders.Components.Movements
 
         public float Direction { get; set; }
 
-        public Movement(RectTransform transform, float speed, float gameSpaceWidth)
+        public Movement(RectTransform transformToMove, float speed, float gameSpaceWidth)
         {
-            _transform = transform;
+            _transformToMove = transformToMove;
             _speed = speed;
-            _moveChecker = new CanMoveChecker(transform, gameSpaceWidth);
+            _moveChecker = new CanMoveChecker(transformToMove, gameSpaceWidth);
         }
 
-        public void Move()
+        public bool TryMove()
         {
-            Vector3 newPosition = new Vector3(_transform.localPosition.x + _speed * SPEED_MULTIPLIER * Direction * Time.deltaTime, _transform.localPosition.y);
+            Vector3 newPosition = new Vector3(_transformToMove.localPosition.x + _speed * SPEED_MULTIPLIER * Direction * Time.deltaTime, _transformToMove.localPosition.y);
             
             if (_moveChecker.Check(newPosition.x))
-                _transform.localPosition = newPosition;
+            {
+                _transformToMove.localPosition = newPosition;
+                return true;
+            }
+
+            return false;
         }
     }
 }

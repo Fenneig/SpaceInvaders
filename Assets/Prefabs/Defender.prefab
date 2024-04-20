@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9181738893852417513}
   - component: {fileID: 877029311003862146}
   - component: {fileID: 4095225362870894212}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Defender
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d04c46e6f77d4145aa67ac140452e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shootPosition: {fileID: 8291813138670016491}
+  _shootTransform: {fileID: 8291813138670016491}
   _speed: 4
 --- !u!61 &877029311003862146
 BoxCollider2D:
@@ -174,7 +174,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8291813138670016491}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: ShootPosition
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}

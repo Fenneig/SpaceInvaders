@@ -10,7 +10,7 @@ namespace SpaceInvaders.Components.Units
 {
     public class Defender : MonoBehaviour, IDamageable
     {
-        [SerializeField] private Transform _shootPosition;
+        [SerializeField] private Transform _shootTransform;
         [SerializeField] private float _speed;
 
         private Movement _movement;
@@ -28,8 +28,11 @@ namespace SpaceInvaders.Components.Units
             _projectileSpawner = projectileSpawner;
         }
         
-        public void Damage() => 
+        public void Damage()
+        {
+            Debug.Log("died");
             Died?.Invoke();
+        }
 
         private void Awake()
         {
@@ -52,7 +55,7 @@ namespace SpaceInvaders.Components.Units
             _movement.Direction = context.ReadValue<float>();
 
         private void OnShoot(InputAction.CallbackContext context) => 
-            _projectileSpawner.Spawn(_shootPosition.position, Side);
+            _projectileSpawner.Spawn(_shootTransform.position, Side);
 
         private void OnEnable() => 
             _defenderInput.Enable();
@@ -61,6 +64,6 @@ namespace SpaceInvaders.Components.Units
             _defenderInput.Disable();
 
         private void Update() => 
-            _movement.Move();
+            _movement.TryMove();
     }
 }

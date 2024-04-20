@@ -12,6 +12,7 @@ namespace SpaceInvaders.Components
         [SerializeField] private float _speed;
         [SerializeField] private Rigidbody2D _rigidbody;
         private ConflictSide _side;
+        private const float SPEED_MULTIPLIER = 100f;
 
         public void Init(ConflictSide side, Color projectileColor)
         {
@@ -20,16 +21,19 @@ namespace SpaceInvaders.Components
         }
 
         public void Fire(Vector2 direction) =>
-            _rigidbody.AddForce(direction * _speed, ForceMode2D.Impulse);
+            _rigidbody.AddForce(direction * _speed * SPEED_MULTIPLIER, ForceMode2D.Impulse);
 
         private void OnValidate() => 
             _rigidbody ??= GetComponent<Rigidbody2D>();
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.TryGetComponent(out IDamageable collision) == false) 
+            if (other.gameObject.TryGetComponent(out IDamageable collision) == false)
+            {
+                Destroy(gameObject);
                 return;
-            
+            }
+
             if (collision.Side == _side)
                 return;
             

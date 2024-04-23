@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using SpaceInvaders.Components.Spawners;
 using SpaceInvaders.Utils;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace SpaceInvaders.Components.Units
 {
@@ -14,10 +15,10 @@ namespace SpaceInvaders.Components.Units
         public RectTransform RectTransform => _rectTransform;
         public float Width { get; private set; }
         public float Height { get; private set; }
-
+        public bool IsRowCleared { get; private set; }
         public delegate void RowSizeChanged(bool fromLeftSide);
-
-        public RowSizeChanged OnRowSizeChanged;
+        public event RowSizeChanged OnRowSizeChanged;
+        public event Action OnRowCleared;
 
         public void Initialize(Alien alienPrefab, int aliensInRow, AlienFactory alienFactory)
         {
@@ -42,6 +43,7 @@ namespace SpaceInvaders.Components.Units
         {
             _availableAliens.ForEach(alien => alien.Clear());
             OnRowSizeChanged = null;
+            OnRowCleared = null;
             Destroy(gameObject);
         }
 
@@ -50,11 +52,24 @@ namespace SpaceInvaders.Components.Units
             Vector2 newPosition = new Vector2(_rectTransform.anchoredPosition.x + moveAmount, _rectTransform.anchoredPosition.y);
             _rectTransform.anchoredPosition = newPosition;
         }
-        
+
+        public void Shoot()
+        {
+            bool isShot = false;
+            while (isShot == false)
+            {
+                int randomAlien = Random.Range(0, _availableAliens.Count);
+                if (_availableAliens[randomAlien].TryShoot())
+                    isShot = true;
+            }
+        }
+
         private void OnAlienDied()
         {
             if (_availableAliens.Count <= 1)
             {
+                IsRowCleared = true;
+                OnRowCleared?.Invoke();
                 Clear();
                 return;
             }

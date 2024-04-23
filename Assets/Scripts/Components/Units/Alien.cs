@@ -26,8 +26,14 @@ namespace SpaceInvaders.Components.Units
         private void Construct(ProjectileSpawner projectileSpawner) =>
             _projectileSpawner = projectileSpawner;
 
-        public void Shoot() => 
+        public bool TryShoot()
+        {
+            if (IsDead) 
+                return false;
+            
             _projectileSpawner.Spawn(_shootTransform.position, Side);
+            return true;
+        }
 
         public void Damage()
         {
@@ -51,5 +57,11 @@ namespace SpaceInvaders.Components.Units
 
         private void Awake() => 
             Side = ConflictSide.Aliens;
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.gameObject.TryGetComponent(out IDamageable collision)) 
+                collision.Damage();
+        }
     }
 }

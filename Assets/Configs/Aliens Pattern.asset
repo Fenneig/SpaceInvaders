@@ -18,19 +18,19 @@ MonoBehaviour:
     - {fileID: 898303591588758581, guid: 48d4337a339e8aa4ea5621fcce1ac068, type: 3}
     - {fileID: 2852120419750777442, guid: 18a6220e3684bf0469420588f9892876, type: 3}
     AliensInRow: 6
-    MovementSpeed: 4
-    AttacksPerSecond: 2
+    MovementSpeed: 2
+    AttacksPerSecond: 1.5
   - AlienRows:
     - {fileID: 898303591588758581, guid: 48d4337a339e8aa4ea5621fcce1ac068, type: 3}
     - {fileID: 4408983734526001281, guid: 716d8ef8ed29be94383087f94d83ed2e, type: 3}
     - {fileID: 2852120419750777442, guid: 18a6220e3684bf0469420588f9892876, type: 3}
     AliensInRow: 8
-    MovementSpeed: 5
-    AttacksPerSecond: 3
+    MovementSpeed: 3
+    AttacksPerSecond: 2
   - AlienRows:
     - {fileID: 4408983734526001281, guid: 716d8ef8ed29be94383087f94d83ed2e, type: 3}
     - {fileID: 4408983734526001281, guid: 716d8ef8ed29be94383087f94d83ed2e, type: 3}
     - {fileID: 4408983734526001281, guid: 716d8ef8ed29be94383087f94d83ed2e, type: 3}
     AliensInRow: 10
-    MovementSpeed: 6
-    AttacksPerSecond: 4
+    MovementSpeed: 4
+    AttacksPerSecond: 2.5

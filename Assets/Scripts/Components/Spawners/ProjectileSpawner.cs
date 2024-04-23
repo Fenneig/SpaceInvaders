@@ -1,4 +1,5 @@
-﻿using SpaceInvaders.Components.Spawners;
+﻿using System.Collections.Generic;
+using SpaceInvaders.Components.Spawners;
 using SpaceInvaders.Configs;
 using SpaceInvaders.Enums;
 using UnityEngine;
@@ -9,6 +10,7 @@ namespace SpaceInvaders.Components
     {
         private ProjectileFactory _factory;
         private ProjectileConfig _projectileConfig;
+        private List<Projectile> _projectiles = new List<Projectile>();
 
         public ProjectileSpawner(ProjectileFactory factory, ProjectileConfig projectileConfig)
         {
@@ -24,10 +26,25 @@ namespace SpaceInvaders.Components
                 : _projectileConfig.AlienProjectileColor;
 
             Projectile projectile = _factory.Get(_projectileConfig.Prefab, position);
+            projectile.OnProjectileDestroy += RemoveProjectile;
+            _projectiles.Add(projectile);
 
             projectile.Init(shooterSide, projectileColor, _projectileConfig.Speed);
 
             projectile.Fire(direction);
+        }
+
+        public void RemoveAllProjectiles()
+        {
+            _projectiles.ForEach(projectile => projectile.DestroyGO());
+            
+            _projectiles = new List<Projectile>();
+        }
+
+        private void RemoveProjectile(Projectile projectile)
+        {
+            _projectiles.Remove(projectile);
+            projectile.DestroyGO();
         }
     }
 }

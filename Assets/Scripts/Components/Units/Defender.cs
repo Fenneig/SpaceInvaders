@@ -28,11 +28,8 @@ namespace SpaceInvaders.Components.Units
             _projectileSpawner = projectileSpawner;
         }
         
-        public void Damage()
-        {
-            Debug.Log("died");
+        public void Damage() => 
             Died?.Invoke();
-        }
 
         private void Awake()
         {

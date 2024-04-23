@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Projectile config
   m_EditorClassIdentifier: 
   _prefab: {fileID: 3132173231668253812, guid: b3c7d6ea40c36d344b777c7b50530f8f, type: 3}
+  _speed: 6
   _alienProjectileColor: {r: 0.8666667, g: 0.19090424, b: 0.19090424, a: 1}
   _defenderProjectileColor: {r: 0.7019608, g: 0.25015837, b: 0.84687346, a: 1}

@@ -1,4 +1,4 @@
-﻿using SpaceInvaders.Components;
+﻿using SpaceInvaders.Components.Spawners;
 using Zenject;
 
 namespace SpaceInvaders.DI
@@ -8,6 +8,7 @@ namespace SpaceInvaders.DI
         public override void InstallBindings()
         {
             Container.Bind<ProjectileFactory>().FromNew().AsSingle();
+            Container.Bind<AlienFactory>().FromNew().AsSingle();
         }
     }
 }

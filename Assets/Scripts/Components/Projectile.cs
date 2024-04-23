@@ -9,14 +9,15 @@ namespace SpaceInvaders.Components
     public class Projectile : MonoBehaviour
     {
         [SerializeField] private Image _projectileImage;
-        [SerializeField] private float _speed;
         [SerializeField] private Rigidbody2D _rigidbody;
         private ConflictSide _side;
+        private float _speed;
         private const float SPEED_MULTIPLIER = 100f;
 
-        public void Init(ConflictSide side, Color projectileColor)
+        public void Init(ConflictSide side, Color projectileColor, float speed)
         {
             _side = side;
+            _speed = speed;
             _projectileImage.color = projectileColor;
         }
 

@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectileImage: {fileID: 5596462841714743622}
-  _speed: 6
+  _speed: 20
   _rigidbody: {fileID: 5915169230248991000}
 --- !u!61 &5775008155626628664
 BoxCollider2D:

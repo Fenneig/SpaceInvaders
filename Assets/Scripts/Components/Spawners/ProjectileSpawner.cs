@@ -1,4 +1,5 @@
-﻿using SpaceInvaders.Configs;
+﻿using SpaceInvaders.Components.Spawners;
+using SpaceInvaders.Configs;
 using SpaceInvaders.Enums;
 using UnityEngine;
 
@@ -24,7 +25,7 @@ namespace SpaceInvaders.Components
 
             Projectile projectile = _factory.Get(_projectileConfig.Prefab, position);
 
-            projectile.Init(shooterSide, projectileColor);
+            projectile.Init(shooterSide, projectileColor, _projectileConfig.Speed);
 
             projectile.Fire(direction);
         }
